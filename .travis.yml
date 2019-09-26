@@ -1,0 +1,18 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install
+  -docker build -t rajatk31/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true rajatk31/react-test npm test
+
+after_success:
+  - docker build -t rajatk31/multi-dock-client ./client
+  - docker build -t rajatk31/multi-dock-nginx ./nginx
+  - docker build -t rajatk31/multi-dock-server ./server
+  - docker build -t rajatk31/multi-dock-worker ./worker
+
+  #Take these images and push them to docker hub.
