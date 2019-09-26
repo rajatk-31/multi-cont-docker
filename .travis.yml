@@ -15,4 +15,10 @@ after_success:
   - docker build -t rajatk31/multi-dock-server ./server
   - docker build -t rajatk31/multi-dock-worker ./worker
 
+  #Login to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #Take these images and push them to docker hub.
+  - docker push rajatk31/multi-dock-client
+  - docker push rajatk31/multi-dock-worker
+  - docker push rajatk31/multi-dock-server
+  - docker push rajatk31/multi-dock-nginx
