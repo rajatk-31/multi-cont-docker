@@ -3,7 +3,7 @@ language: generic
 services:
   - docker
 
-before_install
+before_install:
   -docker build -t rajatk31/react-test -f ./client/Dockerfile.dev ./client
 
 script:
