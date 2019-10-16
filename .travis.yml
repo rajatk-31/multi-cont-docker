@@ -22,3 +22,17 @@ after_success:
   - docker push rajatk31/multi-dock-worker
   - docker push rajatk31/multi-dock-server
   - docker push rajatk31/multi-dock-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-south-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-ap-south-1-282148214463
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY

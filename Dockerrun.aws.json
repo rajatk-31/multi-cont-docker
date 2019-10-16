@@ -1,0 +1,33 @@
+{
+    "AWSEBDockerrunVersion":2,
+    "containerDefinitions":[
+        {
+            "name": "client",
+            "image": "rajatk31/multi-dock-client",
+            "hostname": "client",
+            "essential": false
+        },{
+            "name": "server",
+            "image": "rajatk31/multi-dock-server",
+            "hostname": "api",
+            "essential": false
+        },{
+            "name": "worker",
+            "image": "rajatk31/multi-dock-worker",
+            "hostname": "worker",
+            "essential": false
+        },{
+            "name": "nginx",
+            "image": "rajatk31/multi-dock-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings":[
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "server"]
+        }
+    ]
+}
